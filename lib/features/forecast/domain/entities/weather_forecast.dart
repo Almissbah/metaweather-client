@@ -7,17 +7,20 @@ class WeatherForecast extends Equatable {
   final String locationType;
   final List<DayForecast> daysForecasts;
   WeatherForecast(
-      {@required this.locationName, @required this.locationType,@required this.daysForecasts});
+      {@required this.locationName,
+      @required this.locationType,
+      @required this.daysForecasts});
 
-  @override 
-  List<Object> get props => [locationName,locationType,daysForecasts];
+  @override
+  List<Object> get props => [locationName, locationType, daysForecasts];
 }
 
 @immutable
-class DayForecast  extends Equatable {
+class DayForecast extends Equatable {
   final String status;
   final String abbreviation;
   final String date;
+  final String imageUrl;
   final String compassDirection;
   final double minTemp;
   final double maxTemp;
@@ -28,7 +31,8 @@ class DayForecast  extends Equatable {
   final double humidity;
 
   DayForecast(
-      {@required this.status,
+      {@required this.imageUrl,
+      @required this.status,
       @required this.abbreviation,
       @required this.date,
       @required this.compassDirection,
@@ -40,16 +44,18 @@ class DayForecast  extends Equatable {
       @required this.airPressure,
       @required this.humidity});
 
-  @override 
-  List<Object> get props => [status,
-       abbreviation,
-       date,
-       compassDirection,
-       minTemp,
-       maxTemp,
-       temp,
-       windSpeed,
-       windDirection,
-       airPressure,
-       humidity];
+  @override
+  List<Object> get props => [
+        status,
+        abbreviation,
+        date,
+        compassDirection,
+        minTemp,
+        maxTemp,
+        temp,
+        windSpeed,
+        windDirection,
+        airPressure,
+        humidity
+      ];
 }

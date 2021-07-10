@@ -15,7 +15,8 @@ class WeatherForecastModel extends WeatherForecast {
 
   factory WeatherForecastModel.fromApiResonse(ForecastApiResponse response) {
     var daysForecastList = response.daysForecast
-        .map((element) => DayForecast(
+        .map((element) => DayForecast( 
+            imageUrl: _getImageUrl(element.statusAbbreviation),
             status: element.statusName,
             abbreviation: element.statusAbbreviation,
             date: element.date,
@@ -32,5 +33,9 @@ class WeatherForecastModel extends WeatherForecast {
         locationName: response.locationName,
         locationType: response.locationType,
         daysForecasts: daysForecastList);
+  }
+
+  _getImageUrl(String statusAbbreviation) {
+    return 'https://www.metaweather.com/static/img/weather/$statusAbbreviation.svg';
   }
 }
