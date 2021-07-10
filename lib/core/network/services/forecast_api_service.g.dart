@@ -24,8 +24,7 @@ class _ForecastApiService implements ForecastApiService {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<Map<String, dynamic>>(
-        '/location/search/$woeid',
+    final _result = await _dio.request<Map<String, dynamic>>('/location/$woeid',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

@@ -8,7 +8,7 @@ part 'forecast_api_service.g.dart';
 abstract class ForecastApiService {
   factory ForecastApiService(Dio dio) = _ForecastApiService;
  
-  @GET("/location/search/{woeid}")
+  @GET("/location/{woeid}")
   Future<HttpResponse<ForecastApiResponse>> fetchWeatherForecast(
       {@required @Path("woeid") String woeid, });
 }
