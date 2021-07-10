@@ -28,7 +28,7 @@ Map<String, dynamic> _$ForecastApiResponseToJson(
 
 DayForecastModel _$DayForecastModelFromJson(Map<String, dynamic> json) {
   return DayForecastModel(
-    id: json['id'] as String,
+    id: json['id'] as int,
     compassDirection: json['wind_direction_compass'] as String,
     statusName: json['weather_state_name'] as String,
     statusAbbreviation: json['weather_state_abbr'] as String,

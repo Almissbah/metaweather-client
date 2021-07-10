@@ -30,7 +30,7 @@ class ForecastApiResponse extends Equatable {
 @JsonSerializable()
 class DayForecastModel extends Equatable {
   @JsonKey(name: 'id')
-  final String id;
+  final int id;
   @JsonKey(name: 'weather_state_name')
   final String statusName;
   @JsonKey(name: 'weather_state_abbr')
