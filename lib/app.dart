@@ -5,11 +5,12 @@ import 'features/forecast/presentation/bloc/forecast_bloc.dart';
 import 'features/forecast/presentation/ui/forecast_screen.dart';
 import 'injection.dart';
 
-class MyApp extends StatelessWidget { 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather Forecast',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
