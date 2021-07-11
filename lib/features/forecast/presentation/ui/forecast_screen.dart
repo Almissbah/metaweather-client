@@ -83,6 +83,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
 
   Widget _buildFailureState(ForecastFailure state) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
