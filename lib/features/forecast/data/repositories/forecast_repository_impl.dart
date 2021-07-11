@@ -7,7 +7,9 @@ import 'package:metaweather_client/features/forecast/domain/entities/weather_for
 import 'package:metaweather_client/core/errors/failures.dart';
 import 'package:metaweather_client/features/forecast/domain/repositories/forecast_repository.dart';
 
-@Singleton(as: ForecastRepository)
+import '../../../../injection.dart';
+
+@Singleton(as: ForecastRepository,env: [Env.prod])
 class ForecastRepositoryImpl extends ForecastRepository {
   final ForecastRemoteDataSource forecastRemoteDataSource;
   final NetworkInfo networkInfo;
