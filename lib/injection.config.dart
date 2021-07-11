@@ -42,6 +42,8 @@ GetIt $initGetIt(
   // Eager singletons must be registered in the right order
   gh.singleton<ForecastRemoteDataSource>(ForecastRemoteDataSourceImpl(
       forecastApiService: get<ForecastApiService>()));
+  gh.singleton<NetworkInfo>(
+      NetworkInfoImpl(dataConnectionChecker: get<DataConnectionChecker>()));
   gh.singleton<ForecastRepository>(ForecastRepositoryImpl(
       forecastRemoteDataSource: get<ForecastRemoteDataSource>(),
       networkInfo: get<NetworkInfo>()));
