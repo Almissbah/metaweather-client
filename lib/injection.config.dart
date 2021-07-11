@@ -16,8 +16,13 @@ import 'features/forecast/data/datasources/forecast_remote_data_source.dart';
 import 'features/forecast/domain/repositories/forecast_repository.dart';
 import 'features/forecast/data/repositories/forecast_repository_impl.dart';
 import 'features/forecast/domain/usecases/get_weather_forecast.dart';
+import 'features/forecast/data/repositories/mock_forecast_repository_impl.dart';
 import 'core/network/network_info.dart';
 import 'di/platform_module.dart';
+
+/// Environment names
+const _test = 'test';
+const _prod = 'prod';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -42,11 +47,15 @@ GetIt $initGetIt(
   // Eager singletons must be registered in the right order
   gh.singleton<ForecastRemoteDataSource>(ForecastRemoteDataSourceImpl(
       forecastApiService: get<ForecastApiService>()));
+  gh.singleton<ForecastRepository>(MockForecastRepositoryImpl(),
+      registerFor: {_test});
   gh.singleton<NetworkInfo>(
       NetworkInfoImpl(dataConnectionChecker: get<DataConnectionChecker>()));
-  gh.singleton<ForecastRepository>(ForecastRepositoryImpl(
-      forecastRemoteDataSource: get<ForecastRemoteDataSource>(),
-      networkInfo: get<NetworkInfo>()));
+  gh.singleton<ForecastRepository>(
+      ForecastRepositoryImpl(
+          forecastRemoteDataSource: get<ForecastRemoteDataSource>(),
+          networkInfo: get<NetworkInfo>()),
+      registerFor: {_prod});
   return get;
 }
 
