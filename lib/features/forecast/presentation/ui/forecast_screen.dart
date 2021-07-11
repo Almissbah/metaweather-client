@@ -7,6 +7,8 @@ import 'package:metaweather_client/features/forecast/presentation/ui/widets/fore
 import 'package:metaweather_client/features/forecast/presentation/ui/widets/large_forecast_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'keys/forecast_screen_keys.dart';
+
 class ForecastScreen extends StatefulWidget {
   static String routeName = 'ForecastScreen';
   const ForecastScreen({Key key}) : super(key: key);
@@ -30,6 +32,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: Key(ForecastScreenKeys.SCAFOLD_KEY),
       backgroundColor: Colors.white,
       body: SafeArea(child: _buildBody()),
     );
@@ -51,6 +54,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
 
   BlocListener<ForecastBloc, ForecastState> _buildBlocListener() {
     return BlocListener<ForecastBloc, ForecastState>(
+      key: Key(ForecastScreenKeys.BLOC_LISTENER_KEY),
       listener: (context, state) {
         if (state is ForecastSuccess || state is ForecastFailure)
           _refreshController.refreshCompleted();
@@ -87,11 +91,12 @@ class _ForecastScreenState extends State<ForecastScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(state.msg),
+          child: Text(state.msg,key: Key(ForecastScreenKeys.ERROR_MSG_KEY),),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
+            key: Key(ForecastScreenKeys.RETRY_BUTTON_KEY),
               onPressed: () {
                 _forecastBloc.getForecast();
               },
@@ -105,6 +110,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
     var widgets = [
       Expanded(
         child: LargeForecastWidget(
+            key: Key(ForecastScreenKeys.LARGE_FORECAST_WIDGT_KEY),
             dayForecast: state.weatherForecast.daysForecasts[_selectedIndex]),
       ),
       _buildForecastList(
@@ -134,6 +140,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                 blurRadius: 2, color: Colors.black26, offset: Offset(0, 1))
           ], borderRadius: BorderRadius.circular(5), color: Colors.white),
           child: ListView.builder(
+            key: Key(ForecastScreenKeys.FORECAST_LIST_KEY),
             scrollDirection: axis,
             itemCount: daysForecasts.length,
             itemBuilder: (context, index) => _getListItem(index, daysForecasts),
@@ -147,12 +154,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
     return Material(
       color: Colors.white,
       child: InkWell(
-          onTap: () {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          child: ForecastListItem(dayForecast: daysForecasts[index])),
+        onTap: () {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        child: ForecastListItem(dayForecast: daysForecasts[index]),
+        key: Key(ForecastScreenKeys.FORECAST_LIST_ITEM_PREFIX + '_$index'),
+      ),
     );
   }
 
