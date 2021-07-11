@@ -5,7 +5,7 @@ This a simple mobile application written with Flutter that uses metaweather APIs
 
    <img src="screenshots/screen2.png" width="200">   
 
-<img src="screenshots/screen1.png" width="900">
+<img src="screenshots/screen1.png" width="400">
 ## App Features 
  
 1.   User can show weather forecast for 5 days in list.
