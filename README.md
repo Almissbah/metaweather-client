@@ -1,4 +1,4 @@
-# Shutterstock Client
+# Metaweather Client
 This a simple mobile application written with Flutter that uses metaweather APIs to display a list of of forecasts to a given city base on its woeid (where on earth ID) currently the app is using (44418) which is London location.
  
  
@@ -6,7 +6,8 @@ This a simple mobile application written with Flutter that uses metaweather APIs
    <img src="screenshots/screen2.png" width="200">   
 
 <img src="screenshots/screen1.png" width="400">
-## App Features 
+
+### App Features 
  
 1.   User can show weather forecast for 5 days in list.
 2.   User can pick one of the forecast list to display more details.
